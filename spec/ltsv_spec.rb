@@ -61,4 +61,36 @@ describe Ltsv do
       end
     end
   end
+
+  describe "nilキーがsetされたとき" do
+    it "例外を発生させること" do
+      proc {
+        @ltsv.set(nil, 'value')
+      }.should raise_error ArgumentError, "key should not be nil"
+    end
+  end
+
+  describe "空文字キーが与えられる時" do
+    it "例外を発生させる" do
+      proc {
+        @ltsv.set("", "value")
+      }.should raise_error ArgumentError, "key should not be empty"
+    end
+  end
+
+  describe "null値をsetすると" do
+    it "例外を発生させる" do
+      proc {
+        @ltsv.set("key", nil)
+      }.should raise_error ArgumentError, "value should not be nil"
+    end
+  end
+
+  describe "空文字列をsetすると" do
+    it "正常にsetできる" do
+      proc{
+        @ltsv.set("key", "")
+      }.should_not raise_error
+    end
+  end
 end

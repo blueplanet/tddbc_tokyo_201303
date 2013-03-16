@@ -8,6 +8,18 @@ class Ltsv
   end
 
   def set key, value
+    if key == nil
+      raise ArgumentError, "key should not be nil"
+    end
+
+    if key.empty?
+      raise ArgumentError, "key should not be empty"
+    end
+
+    if value == nil
+      raise ArgumentError, "value should not be nil"
+    end
+
     if old_value = @data[key]
       @data[key] = value
       old_value
