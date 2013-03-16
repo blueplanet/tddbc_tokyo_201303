@@ -32,6 +32,7 @@ class Ltsv
   def dump
     return_string = ""
     @data.each do |key, value|
+      value = value.gsub /:/, "\\:"
       return_string << "\t" if return_string.length > 0
       return_string << "#{key}:#{value}"
     end

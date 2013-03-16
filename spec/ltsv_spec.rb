@@ -92,5 +92,17 @@ describe Ltsv do
         @ltsv.set("key", "")
       }.should_not raise_error
     end
+
+    it "dumpはkey:\n" do
+      @ltsv.set("key", "")
+      @ltsv.dump.should == "key:\n"
+    end
+  end
+
+  describe "コロンを含む文字列をsetすると" do
+    it "バックスラッシュでエスケープする" do
+      @ltsv.set("key", "val:ue")
+      @ltsv.dump.should == "key:val\\:ue\n"
+    end
   end
 end
