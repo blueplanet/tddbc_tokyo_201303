@@ -1,17 +1,18 @@
 require 'ltsv'
 
 describe Ltsv do
-  subject { ltsv.get(key) }
-  let(:ltsv) { Ltsv.new }
-
-  let(:key) { "key" }
+  before do
+    @ltsv = Ltsv.new
+  end
 
   context "set 'key', 'value'" do
     before do
-      ltsv.set "key", "value"
+      @ltsv.set "key", "value"
     end
 
-    it{should == "value"}
+    it "get 'key'が'value'を返す" do
+      @ltsv.get("key").should == "value"
+    end
   end
 
   it "get 'key2'が'value2'を返す" do
