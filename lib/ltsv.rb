@@ -10,13 +10,9 @@ class Ltsv
   def set key, value
     raise ArgumentError if key.nil? || key.empty? || value.nil?
 
-    if old_value = @data[key]
-      @data[key] = value
-      old_value
-    else
-      @data[key] = value
-      nil
-    end
+    old_value = @data[key]
+    @data[key] = value
+    old_value
   end
 
   def dump
